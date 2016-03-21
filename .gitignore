@@ -1,0 +1,7 @@
+autoscan.log
+autom4te.cache
+configure.scan
+configure
+config.h.in
+config.log
+config.status
