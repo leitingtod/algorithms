@@ -1,7 +1,18 @@
-autoscan.log
-autom4te.cache
-configure.scan
-configure
-config.h.in
-config.log
-config.status
+# autotools like
+auto*
+configure*
+config.*
+aclocal*
+
+Makefile.in
+compile
+depcomp
+.deps
+stamp-h1
+install-sh
+missing
+test-driver
+INSTALL
+
+dsl
+*.o
