@@ -16,9 +16,10 @@ struct node {
 typedef struct node LinkList;
 typedef struct node LinkListElem;
 
-LinkList * linklist_init(LinkList *head);
+LinkList * linklist_init();
 void linklist_iter(LinkList *head);
-LinkListElem * linklist_search(LinkList *head, int val);
+LinkListElem * linklist_find(LinkList *head, int val);
+LinkListElem * linklist_get(LinkList *head, int position);
 
 void linklist_append(LinkList *head, int val);
 void linklist_remove(LinkList *head, int val);

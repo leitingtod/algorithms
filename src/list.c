@@ -8,23 +8,28 @@
 #include <stdlib.h>
 #include "list.h"
 
-LinkList * linklist_init(LinkList *head){
-	head = (LinkList *)malloc(sizeof(LinkList));
+LinkList * linklist_init(){
+	LinkList *head = (LinkList *)malloc(sizeof(LinkList));
 	head->next = NULL;
 	return head;
 }
 
 void linklist_iter(LinkList *head){
-	LinkList *p = head;
+	LinkList *p;
+	int pos = 1;
+
 	if(head == NULL) return;
 
-	while(p->next != NULL) {
-		printf("%d ", p->data);
+	p = head->next;
+
+	while(p != NULL) {
+		printf("[%2d] %p: %d\n", pos, p, p->data);
 		p = p->next;
+		pos++;
 	}
 }
 
-LinkListElem *linklist_search(LinkList *head, int val){
+LinkListElem *linklist_find(LinkList *head, int val){
 	LinkList *p = head;
 
 	while(p->next != NULL) {
@@ -32,17 +37,39 @@ LinkListElem *linklist_search(LinkList *head, int val){
 			break;
 		p = p->next;
 	}
+	printf("[find] %p: %d\n", p, p->data);
 	return p;
+}
+
+LinkListElem *linklist_get(LinkList *head, int position) {
+	LinkList *p = head, *get;
+	int pos = 0;
+
+	if(head == NULL || position < 1) return NULL;
+
+	while(p->next != NULL) {
+		if(pos == position-1)
+			break;
+		p = p->next;
+		pos++;
+	}
+	get = p->next;
+	printf("[get] %p: %d\n", get, get->data);
+	return get;
 }
 
 void linklist_append(LinkList *head, int val){
 	LinkList *p = head, *e;
+
 	if(head == NULL) return;
+
 	e = (LinkList *)malloc(sizeof(LinkList));
 	e->data = val;
+
 	while(p->next != NULL) {
 		p = p->next;
 	}
+
 	p->next = e;
 	e->next = NULL;
 }
@@ -64,13 +91,13 @@ void linklist_insert(LinkList *head, int val, int position){
 	LinkList *p = head, *e;
 	int pos = 0;
 
-	if(head == NULL) return;
+	if(head == NULL || position < 1) return;
 
 	e = (LinkList *)malloc(sizeof(LinkList));
 	e->data = val;
 
-	while(p->next != NULL) {
-		if(pos == position)
+	while(p != NULL) {
+		if(pos == position-1)
 			break;
 		p = p->next;
 		pos++;
@@ -82,6 +109,10 @@ void linklist_insert(LinkList *head, int val, int position){
 void linklist_delete(LinkList *head, int position){
 	LinkList *p = head, *del;
 	int pos = 0;
+
+	if(head == NULL || position < 1) return;
+
+	// 注意与linklist_insert的不同
 	while(p->next != NULL) {
 		if(pos == position-1)
 			break;
