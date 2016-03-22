@@ -4,14 +4,14 @@
 
 static char *seperator ="--------------------------";
 
-void test_linklist() {
+void test_linklist(int len) {
 	LinkList *head;
 	int i;
 
 	printf("%s init\n", seperator);
 	head = linklist_init();
 
-	for(i=0; i<10; i++) {
+	for(i=0; i<len; i++) {
 		linklist_append(head, i);
 	}
 
@@ -31,7 +31,7 @@ void test_linklist() {
 	linklist_insert(head, 8, 2);
 	linklist_iter(head);
 
-	printf("%s insert elem's val=8 in pos 1\n", seperator);
+	printf("%s insert elem's val=98 in pos 1\n", seperator);
 	linklist_insert(head, 98, 1);
 	linklist_iter(head);
 
@@ -43,9 +43,13 @@ void test_linklist() {
 	printf("%s insert elem's val=99 in pos 1\n", seperator);
 	linklist_insert(head, 99, 1);
 	linklist_iter(head);
+
+	printf("%s swap elem 2 by 2\n", seperator);
+	linklist_swap_2by2(head);
+	linklist_iter(head);
 }
 
 int main(int argc, char **argv) {
-	test_linklist();
+	test_linklist(7);
 	return 0;
 }

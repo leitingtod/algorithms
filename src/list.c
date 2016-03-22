@@ -124,3 +124,36 @@ void linklist_delete(LinkList *head, int position){
 	free(del);
 }
 
+/*
+ * example: LinkList a = 1 2 3 4 5
+ * excute: linklist_swap_2by2(a)
+ * output: 2 1 4 3 5
+ * */
+void linklist_swap_2by2(LinkList *head) {
+	LinkList *a, *b, *p;
+
+	if(head == NULL) return;
+
+	p = head;
+	a = head->next;
+
+	while(a != NULL) {
+		b = a->next;
+		if(b != NULL) {
+			// swap
+			a->next = b->next;
+			b->next = a;
+			p->next = b;
+			p = a;
+			if(a->next != NULL) {
+				a = a->next;
+				continue;
+			} else {
+				break;
+			}
+		} else {
+			break;
+		}
+	}
+}
+
