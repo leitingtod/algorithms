@@ -29,6 +29,32 @@ void linklist_iter(LinkList *head){
 	}
 }
 
+/*
+ * 倒序打印列表元素，但不能更改列表
+ * 除了递归，还有其他好办法吗？
+ */
+void linklist_iter_reverse(LinkList *head){
+	LinkList *p;
+	int pos = 1;
+
+	if(head == NULL) return;
+
+	p = head;
+
+	if(p->next == NULL)
+	{
+		printf("[%2d] %p: %d\n", pos, p, p->data);
+		return;
+	} else {
+		linklist_iter_reverse(p->next);
+		printf("[%2d] %p: %d\n", pos, p, p->data);
+	}
+}
+
+void linklist_check_loop(LinkList *head) {
+
+}
+
 LinkListElem *linklist_find(LinkList *head, int val){
 	LinkList *p = head;
 
@@ -128,7 +154,7 @@ void linklist_delete(LinkList *head, int position){
  * example: LinkList a = 1 2 3 4 5
  * excute: linklist_swap_2by2(a)
  * output: 2 1 4 3 5
- * */
+ */
 void linklist_swap_2by2(LinkList *head) {
 	LinkList *a, *b, *p;
 
@@ -156,4 +182,5 @@ void linklist_swap_2by2(LinkList *head) {
 		}
 	}
 }
+
 

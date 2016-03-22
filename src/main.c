@@ -47,9 +47,12 @@ void test_linklist(int len) {
 	printf("%s swap elem 2 by 2\n", seperator);
 	linklist_swap_2by2(head);
 	linklist_iter(head);
+
+	printf("%s reverse iter link list\n", seperator);
+	linklist_iter_reverse(head);
 }
 
 int main(int argc, char **argv) {
-	test_linklist(7);
+	test_linklist(8);
 	return 0;
 }

@@ -18,6 +18,8 @@ typedef struct node LinkListElem;
 
 LinkList * linklist_init();
 void linklist_iter(LinkList *head);
+void linklist_iter_reverse(LinkList *head);
+void linklist_check_loop(LinkList *head);
 LinkListElem * linklist_find(LinkList *head, int val);
 LinkListElem * linklist_get(LinkList *head, int position);
 
