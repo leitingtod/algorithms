@@ -28,5 +28,7 @@ void linklist_remove(LinkList *head, int val);
 void linklist_insert(LinkList *head, int val, int position);
 void linklist_delete(LinkList *head, int position);
 
+#define SEPERATOR "--------------------------"
+void test_linklist(int len);
 
 #endif /* DATA_STRUCTURE_SRC_LIST_H_ */

@@ -35,7 +35,6 @@ void linklist_iter(LinkList *head){
  */
 void linklist_iter_reverse(LinkList *head){
 	LinkList *p;
-	int pos = 1;
 
 	if(head == NULL) return;
 
@@ -43,11 +42,11 @@ void linklist_iter_reverse(LinkList *head){
 
 	if(p->next == NULL)
 	{
-		printf("[%2d] %p: %d\n", pos, p, p->data);
+		printf("[-] %p: %d\n", p, p->data);
 		return;
 	} else {
 		linklist_iter_reverse(p->next);
-		printf("[%2d] %p: %d\n", pos, p, p->data);
+		printf("[*] %p: %d\n", p, p->data);
 	}
 }
 
@@ -182,5 +181,55 @@ void linklist_swap_2by2(LinkList *head) {
 		}
 	}
 }
+
+
+void test_linklist(int len) {
+	LinkList *head;
+	int i;
+
+	printf("%s init\n", SEPERATOR);
+	head = linklist_init();
+
+	for(i=0; i<len; i++) {
+		linklist_append(head, i);
+	}
+
+	linklist_iter(head);
+
+	printf("%s find elem's val == 2\n", SEPERATOR);
+	linklist_find(head, 2);
+
+	printf("%s get elem's pos == 2\n", SEPERATOR);
+	linklist_get(head, 2);
+
+	printf("%s remove elem's val == 1\n", SEPERATOR);
+	linklist_remove(head, 1);
+	linklist_iter(head);
+
+	printf("%s insert elem's val=8 in pos 2\n", SEPERATOR);
+	linklist_insert(head, 8, 2);
+	linklist_iter(head);
+
+	printf("%s insert elem's val=98 in pos 1\n", SEPERATOR);
+	linklist_insert(head, 98, 1);
+	linklist_iter(head);
+
+
+	printf("%s delete elem in pos 2\n", SEPERATOR);
+	linklist_delete(head, 2);
+	linklist_iter(head);
+
+	printf("%s insert elem's val=99 in pos 1\n", SEPERATOR);
+	linklist_insert(head, 99, 1);
+	linklist_iter(head);
+
+	printf("%s swap elem 2 by 2\n", SEPERATOR);
+	linklist_swap_2by2(head);
+	linklist_iter(head);
+
+	printf("%s reverse iter link list\n", SEPERATOR);
+	linklist_iter_reverse(head);
+}
+
 
 

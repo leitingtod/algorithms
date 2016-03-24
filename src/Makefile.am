@@ -1,5 +1,5 @@
 bin_PROGRAMS = dsl
-dsl_SOURCES = main.c list.c list.h
+dsl_SOURCES = main.c list.c list.h chess.c chess.h
 #dsl_CFLAGS = -g -O1
 #CFLAGS = -g -O1
 
