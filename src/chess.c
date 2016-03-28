@@ -214,7 +214,7 @@ void test_chess() {
 //	debug_show("next", &next, dir);
 
 	for (i = 0;; i++) {
-		if (TRUE == get_next(&start, &next, dir)) {
+																																												if (TRUE == get_next(&start, &next, dir)) {
 			tmp_start.x = next.x;
 			tmp_start.y = next.y;
 			if (TRUE == check_next(&tmp_start, &tmp_next)) {
