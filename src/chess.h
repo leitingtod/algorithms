@@ -8,10 +8,6 @@
 #ifndef DATA_STRUCTURE_SRC_CHESS_H_
 #define DATA_STRUCTURE_SRC_CHESS_H_
 
-#ifndef SEPERATOR
-#define SEPERATOR "--------------------------"
-#endif
-
 void test_chess();
 
 #endif /* DATA_STRUCTURE_SRC_CHESS_H_ */

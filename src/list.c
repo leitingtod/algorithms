@@ -184,6 +184,7 @@ void linklist_swap_2by2(LinkList *head) {
 
 
 void test_linklist(int len) {
+	#define SEPERATOR "--------------------------"
 	LinkList *head;
 	int i;
 
