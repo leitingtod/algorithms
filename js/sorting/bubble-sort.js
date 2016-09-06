@@ -6,12 +6,74 @@
 // O(n^2)
 
 var bubble_sort = {
+    'leiAA': function(a, compare_fn) {
+        var i, j, x, flag = true, bound, newbound, iter = 0, swap= 0, n= a.length;
+        //最坏情况下，T(n) = O(n^2)；平均情况下，T(n) = O(n^2)
+        bound = n-1;
+        while(flag) {
+            flag = false;
+            newbound = 0;
+            // newbound表示此次遍历发生交换的元素位置，进一步减少扫描范围，
+            // 若无交换，说明整个序列已经有序，无须再进行一下次扫描。
+            for(j=0;j<bound;j++) {
+                if(a[j]>a[j+1]) {
+                    x = a[j];
+                    a[j] = a[j+1];
+                    a[j+1] = x;
+                    swap++;
+                    flag = true;
+                    newbound = j;
+                }
+                iter++;
+            }
+            bound = newbound;
+        }
+        return {'answer': a, 'swap': swap, 'iter': iter, 'O(n^2)': n * n}
+    },
 
-    'lei': function (a, comparator_fn) {
+    'leiA': function(a, compare_fn) {
+        var i, j, x, flag = true, iter = 0, swap= 0, n= a.length;
+        //最坏情况下，T(n) = O(n^2)；平均情况下，T(n) = O(n^2)
+        i = n-2;
+        while(flag) {
+            flag = false;
+            //flag表示此次遍历是否发生交换，若无交换，说明整个序列已经有序，无须再进行一下次扫描。
+            for(j=0;j<=i;j++) {
+                if(a[j]>a[j+1]) {
+                    x = a[j];
+                    a[j] = a[j+1];
+                    a[j+1] = x;
+                    swap++;
+                    flag = true;
+                }
+                iter++;
+            }
+            i--;
+        }
+        return {'answer': a, 'swap': swap, 'iter': iter, 'O(n^2)': n * n}
+    },
+
+    'lei': function(a, compare_fn) {
+        var i, j, x, iter = 0, swap= 0, n= a.length;
+        for(i=0; i<n-1; i++) {
+            for(j=n-2; j>=i; j--) {
+                if(a[j]>a[j+1]) {
+                    x = a[j];
+                    a[j] = a[j+1];
+                    a[j+1] = x;
+                    swap++;
+                }
+                iter++;
+            }
+        }
+        return {'answer': a, 'swap': swap, 'iter': iter, 'O(n^2)': n * n}
+    },
+
+    'leiError': function (a, comparator_fn) {
         var n = a.length;
         var iter = 0;
         var swap = 0;
-        //这样写算得上冒泡吗？好像不是啊:-(
+        //这样写算得上冒泡吗？好像不是啊:-(，但结果正确，比较、移动次数较多，效率较差。
         for (var i = 0; i < n; i++) {
             for (var j = i + 1; j < n; j++) {
                 if (comparator_fn(a[i], a[j]) > 0) {
@@ -74,7 +136,7 @@ var bubble_sort = {
             }
             //console.warn(i);
             if (!check)
-                return {'answer': a, 'swap': swap, 'iter': iter, 'O(n^2)': n * n}
+                break;
             bound = newbound;
         }
         return {'answer': a, 'swap': swap, 'iter': iter, 'O(n^2)': n * n}
@@ -107,11 +169,14 @@ var bubble_sort = {
 
 var test = function () {
     console.warn('felipernb is the best\n');
-    var filter = 'felipernb';
 
-    function sort(a) {
+    var filter = ['felipernb'];
+
+    function sort(b) {
         for (var v in bubble_sort) {
-            if (v === filter) {
+            var a = b.concat();
+            //console.log(filter.indexOf(v), v, a);
+            if (filter.indexOf(v) >= 0) {
                 console.log(v, bubble_sort[v](a, function (x, y) {
                     return x - y
                 }));
@@ -121,7 +186,7 @@ var test = function () {
 
     sort([22, 33, 11, 5, 9, 100, 40]);
     console.log('');
-    sort([11, 22, 33, 44, 55, 66, 77])
+    sort([11, 22, 33, 44, 55, 66, 77]);
     console.log('');
     sort([11, 22, 33, 44, 55, 66, 77].reverse())
 
