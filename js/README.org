@@ -1,0 +1,5 @@
+* 参考
+- https://github.com/nzakas/computer-science-in-javascript
+- https://github.com/duereg/js-algorithms
+- https://github.com/mgechev/javascript-algorithms
+- https://github.com/felipernb/algorithms.js
