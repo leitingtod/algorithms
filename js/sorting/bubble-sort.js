@@ -74,6 +74,7 @@ var bubble_sort = {
         var iter = 0;
         var swap = 0;
         //这样写算得上冒泡吗？好像不是啊:-(，但结果正确，比较、移动次数较多，效率较差。
+        //the badest selection-sort :-(
         for (var i = 0; i < n; i++) {
             for (var j = i + 1; j < n; j++) {
                 if (comparator_fn(a[i], a[j]) > 0) {
