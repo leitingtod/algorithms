@@ -69,12 +69,14 @@ var bubble_sort = {
         return {'answer': a, 'swap': swap, 'iter': iter, 'O(n^2)': n * n}
     },
 
+
+
     'leiError': function (a, comparator_fn) {
         var n = a.length;
         var iter = 0;
         var swap = 0;
         //这样写算得上冒泡吗？好像不是啊:-(，但结果正确，比较、移动次数较多，效率较差。
-        //the badest selection-sort :-(
+        // si bu xiang algorithm
         for (var i = 0; i < n; i++) {
             for (var j = i + 1; j < n; j++) {
                 if (comparator_fn(a[i], a[j]) > 0) {
@@ -143,6 +145,39 @@ var bubble_sort = {
         return {'answer': a, 'swap': swap, 'iter': iter, 'O(n^2)': n * n}
     },
 
+    'felipernb1': function(a) {
+        var sw = 0, iter = 0;
+        function shortBubbleSort(array, comparatorFn) {
+            var comparator = comparatorFn;
+            var length = array.length - 1;
+            var i = 0;
+
+            for (i; i < length; i++) {
+                var current = array[i];
+                var next = array[i + 1];
+
+                /**
+                 * If the current value if greater than the next:
+                 * - set current value to next value;
+                 * - and set next value to current value;
+                 * - then reset iterator counter to rescan for values to be sorted.
+                 */
+
+                if (comparator(current, next) > 0) {
+                    array[i + 1] = current;
+                    array[i] = next;
+                    i = -1;
+                    sw++;
+                }
+                iter++;
+            }
+
+            return array;
+        }
+        var ret = shortBubbleSort(a, function(a, b) {return a-b; }), n= a.length;
+        return {'answer': ret, 'swap': sw, 'iter': iter, 'O(n^2)': n * n}
+    },
+
     'mgechev': function (array, cmp) {
         function comparator(a, b) {
             return a - b;
@@ -171,7 +206,7 @@ var bubble_sort = {
 var test = function () {
     console.warn('felipernb is the best\n');
 
-    var filter = ['felipernb'];
+    var filter = ['felipernb', 'felipernb1'];
 
     function sort(b) {
         for (var v in bubble_sort) {
